@@ -64,6 +64,9 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\..\bin\MongoDB\MongoDB.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\..\..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\bin\Newtonsoft\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -91,6 +94,7 @@
     <Compile Include="Helpers\ImageProcessingHelper.cs" />
     <Compile Include="Helpers\TagHelper.cs" />
     <Compile Include="Managers\HydrantWikiManager.cs" />
+    <Compile Include="Managers\HydrantWikiStructureManager.cs" />
     <Compile Include="Objects\Address.cs" />
     <Compile Include="Objects\Hydrant.cs" />
     <Compile Include="Objects\HydrantImage.cs" />
@@ -123,6 +127,9 @@
       <Project>{E6DF32BB-18C9-4BD8-882A-A0CB67383A40}</Project>
       <Name>tgNet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

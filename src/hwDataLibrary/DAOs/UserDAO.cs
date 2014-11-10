@@ -24,8 +24,10 @@ namespace HydrantWiki.Library.DAOs
             base.BuildTable();
 
             List<string> columns = new List<string> {"UserSource", "Username"};
-
             BuildUniqueIndex(columns, "USERSOURCE_USERNAME");
+
+            columns = new List<string> { "UserSource", "EmailAddress" };
+            BuildUniqueIndex(columns, "USERSOURCE_EMAIL");
         }
 
         public User Get(string _userSource, string _userName)
@@ -33,6 +35,15 @@ namespace HydrantWiki.Library.DAOs
             NameValueCollection nvc = new NameValueCollection();
             nvc.Add("UserSource", _userSource);
             nvc.Add("Username", _userName);
+
+            return GetOneItem<User>(nvc);
+        }
+
+        public User GetByEmail(string _userSource, string _emailAddress)
+        {
+            NameValueCollection nvc = new NameValueCollection();
+            nvc.Add("UserSource", _userSource);
+            nvc.Add("EmailAddress", _emailAddress);
 
             return GetOneItem<User>(nvc);
         }

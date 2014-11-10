@@ -69,6 +69,18 @@ namespace HydrantWiki.Library.Managers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="_userSource"></param>
+        /// <param name="_emailAddress"></param>
+        /// <returns></returns>
+        public User GetUserByEmail(string _userSource, string _emailAddress)
+        {
+            UserDAO dao = new UserDAO(MongoDB);
+            return dao.GetByEmail(_userSource, _emailAddress);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public long GetUserCount()
         {
@@ -644,7 +656,8 @@ namespace HydrantWiki.Library.Managers
 
         public TGUserAuthorization GetUserAuthorization(Guid _userGuid, string _authorizationToken)
         {
-            throw new NotImplementedException();
+            TGUserAuthorizationDAO dao = new TGUserAuthorizationDAO(MongoDB);
+            return dao.Get(_userGuid, _authorizationToken);
         }
 
         public void Persist(TGUserAuthorization _tgUserAuthorization)
