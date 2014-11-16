@@ -26,8 +26,7 @@ namespace HydrantWiki.Library.DAOs
             List<string> columns = new List<string> {"UserSource", "Username"};
             BuildUniqueIndex(columns, "USERSOURCE_USERNAME");
 
-            columns = new List<string> { "UserSource", "EmailAddress" };
-            BuildUniqueIndex(columns, "USERSOURCE_EMAIL");
+            BuildUniqueSparceIndex("EmailAddress", "EMAIL");
         }
 
         public User Get(string _userSource, string _userName)

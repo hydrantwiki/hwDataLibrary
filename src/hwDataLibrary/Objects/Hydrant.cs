@@ -85,25 +85,21 @@ namespace HydrantWiki.Library.Objects
 
         public override void LoadFromTGSerializedObject(TGSerializedObject _tgs)
         {
-            if (_tgs != null
-                && _tgs.TGObjectType == TGObjectType)
+            base.LoadFromTGSerializedObject(_tgs);
+
+            OriginalTagUserGuid = _tgs.GetGuid("OriginalTagUserGuid");
+            OriginalTagDateTime = _tgs.GetDateTime("OriginalTagDateTime");
+            Position = _tgs.GetGeoPoint("Position");
+            CreationDateTime = _tgs.GetDateTime("CreationDateTime");
+            PrimaryImageGuid = _tgs.GetNullableGuid("PrimaryImageGuid");
+            OriginalReviewerUserGuid = _tgs.GetNullableGuid("OriginalReviewerUserGuid");
+            LastReviewerUserGuid = _tgs.GetNullableGuid("LastReviewerUserGuid");
+
+            string temp = _tgs.GetString("Properties");
+
+            if (temp != null)
             {
-                base.LoadFromTGSerializedObject(_tgs);
-
-                OriginalTagUserGuid = _tgs.GetGuid("OriginalTagUserGuid");
-                OriginalTagDateTime = _tgs.GetDateTime("OriginalTagDateTime");
-                Position = _tgs.GetGeoPoint("Position");
-                CreationDateTime = _tgs.GetDateTime("CreationDateTime");
-                PrimaryImageGuid = _tgs.GetNullableGuid("PrimaryImageGuid");
-                OriginalReviewerUserGuid = _tgs.GetNullableGuid("OriginalReviewerUserGuid");
-                LastReviewerUserGuid = _tgs.GetNullableGuid("LastReviewerUserGuid");
-
-                string temp = _tgs.GetString("Properties");
-
-                if (temp != null)
-                {
-                    Properties = TGSerializedObject.GetTGSerializable<Properties>(temp);
-                }
+                Properties = TGSerializedObject.GetTGSerializable<Properties>(temp);
             }
         }
     }

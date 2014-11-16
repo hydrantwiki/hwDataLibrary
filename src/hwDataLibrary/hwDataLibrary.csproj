@@ -80,12 +80,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\CannedEmailNames.cs" />
     <Compile Include="Constants\HydrantWikiConstants.cs" />
     <Compile Include="Constants\TagStatus.cs" />
     <Compile Include="Constants\TagTypes.cs" />
     <Compile Include="Constants\UserSources.cs" />
     <Compile Include="DAOs\HydrantDAO.cs" />
     <Compile Include="DAOs\HydrantImageDAO.cs" />
+    <Compile Include="DAOs\SystemEmailDAO.cs" />
     <Compile Include="DAOs\TagDAO.cs" />
     <Compile Include="DAOs\UserDAO.cs" />
     <Compile Include="DAOs\UserStatsDAO.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Objects\HydrantImage.cs" />
     <Compile Include="Objects\HydrantPosition.cs" />
     <Compile Include="Objects\NearbyHydrant.cs" />
+    <Compile Include="Objects\SystemEmail.cs" />
     <Compile Include="Objects\Tag.cs" />
     <Compile Include="Objects\TagRow.cs" />
     <Compile Include="Objects\User.cs" />

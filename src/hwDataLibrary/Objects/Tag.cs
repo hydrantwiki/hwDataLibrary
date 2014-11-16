@@ -1,4 +1,5 @@
 ﻿using System;
+using HydrantWiki.Library.Constants;
 using TreeGecko.Library.Common.Interfaces;
 using TreeGecko.Library.Common.Objects;
 using TreeGecko.Library.Geospatial.Attributes;
@@ -40,7 +41,7 @@ namespace HydrantWiki.Library.Objects
             {
                 if (Position != null)
                 {
-                    return Position.ToString("###.####");
+                    return Position.ToString("###.######");
                 }
 
                 return null;
@@ -72,7 +73,15 @@ namespace HydrantWiki.Library.Objects
         /// </summary>
         public Properties Properties { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Guid? HydrantGuid { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Status { get; set; }
 		
         /// <summary>
         /// 
@@ -91,6 +100,7 @@ namespace HydrantWiki.Library.Objects
             obj.Add("ExternalSource", ExternalSource);
             obj.Add("Properties", Properties.ToString());
             obj.Add("HydrantGuid", HydrantGuid);
+            obj.Add("Status", Status);
 
             return obj;
         }
@@ -114,6 +124,8 @@ namespace HydrantWiki.Library.Objects
             {
                 Properties = TGSerializedObject.GetTGSerializable<Properties>(temp);
             }
+
+            Status = _tgs.GetString("Status");
         }
     }
 }

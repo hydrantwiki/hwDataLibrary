@@ -33,6 +33,9 @@ namespace HydrantWiki.Library.Managers
             CannedEmailDAO cannedEmailDAO = new CannedEmailDAO(MongoDB);
             cannedEmailDAO.BuildTable();
 
+            SystemEmailDAO systemEmailDAO = new SystemEmailDAO(MongoDB);
+            systemEmailDAO.BuildTable();
+
             TGUserAuthorizationDAO tgUserAuthorizationDAO = new TGUserAuthorizationDAO(MongoDB);
             tgUserAuthorizationDAO.BuildTable();
 

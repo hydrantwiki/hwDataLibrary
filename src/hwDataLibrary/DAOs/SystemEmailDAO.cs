@@ -1,12 +1,16 @@
-﻿using HydrantWiki.Library.Objects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HydrantWiki.Library.Objects;
 using MongoDB.Driver;
 using TreeGecko.Library.Mongo.DAOs;
 
 namespace HydrantWiki.Library.DAOs
 {
-    internal class HydrantDAO: AbstractMongoDAO<Hydrant>
+    public class SystemEmailDAO : AbstractMongoDAO<SystemEmail>
     {
-        public HydrantDAO(MongoDatabase _mongoDB)
+        public SystemEmailDAO(MongoDatabase _mongoDB)
             : base(_mongoDB)
         {
             HasParent = false;
@@ -14,12 +18,14 @@ namespace HydrantWiki.Library.DAOs
 
         public override string TableName
         {
-            get { return "Hydrant"; }
+            get { return "SystemEmail"; }
         }
 
         public override void BuildTable()
         {
             base.BuildTable();
+
+            BuildNonuniqueIndex("SentDateTime", "SENT");
         }
     }
 }

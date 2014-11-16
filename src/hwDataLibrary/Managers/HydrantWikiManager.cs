@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using HydrantWiki.Library.DAOs;
 using HydrantWiki.Library.Enums;
 using HydrantWiki.Library.Helpers;
@@ -12,6 +14,7 @@ using TreeGecko.Library.Geospatial.Helpers;
 using TreeGecko.Library.Geospatial.Objects;
 using TreeGecko.Library.Mongo.Managers;
 using TreeGecko.Library.Net.DAOs;
+using TreeGecko.Library.Net.Helpers;
 using TreeGecko.Library.Net.Interfaces;
 using TreeGecko.Library.Net.Objects;
 
@@ -646,11 +649,84 @@ namespace HydrantWiki.Library.Managers
             
         }
 
+        public bool SendCannedEmail(TGUser _tgUser, 
+            string _cannedEmailName, 
+            NameValueCollection _additionParameters)
+        {
+            try
+            {
+                CannedEmail cannedEmail = GetCannedEmail(_cannedEmailName);
+
+                if (cannedEmail != null)
+                {
+                    SystemEmail email = new SystemEmail(cannedEmail.Guid);
+
+                    TGSerializedObject tgso = _tgUser.GetTGSerializedObject();
+                    foreach (string key in _additionParameters.Keys)
+                    {
+                        string value = _additionParameters.Get(key);
+                        tgso.Add(key, value);
+                    }
+
+                    CannedEmailHelper.PopulateEmail(cannedEmail, email, tgso);
+
+                    SESHelper.SendMessage(email);
+                    Persist(email);
+
+                    return true;
+                }
+                else
+                {
+                    TraceFileHelper.Warning("Canned email not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                TraceFileHelper.Exception(ex);
+            }
+
+            return false;
+
+        }
+
         public void Delete(TGUserEmailValidation _emailValidation)
         {
             TGUserEmailValidationDAO dao = new TGUserEmailValidationDAO(MongoDB);
             dao.Delete(_emailValidation);
         }
+
+        #region Email
+        public void Persist(CannedEmail _cannedEmail)
+        {
+            CannedEmailDAO dao = new CannedEmailDAO(MongoDB);
+            dao.Persist(_cannedEmail);
+        }
+
+        public CannedEmail GetCannedEmail(Guid _cannedEmailGuid)
+        {
+            CannedEmailDAO dao = new CannedEmailDAO(MongoDB);
+            return dao.Get(_cannedEmailGuid);
+        }
+
+        public CannedEmail GetCannedEmail(string _cannedEmailName)
+        {
+            CannedEmailDAO dao = new CannedEmailDAO(MongoDB);
+            return dao.Get(_cannedEmailName);
+        }
+
+        public void Persist(SystemEmail _systemEmail)
+        {
+            SystemEmailDAO dao = new SystemEmailDAO(MongoDB);
+            dao.Persist(_systemEmail);
+        }
+
+        public SystemEmail GetSystemEmail(Guid _guid)
+        {
+            SystemEmailDAO dao = new SystemEmailDAO(MongoDB);
+            return dao.Get(_guid);
+        }
+
+        #endregion
 
         #region UserAuthorizations
 

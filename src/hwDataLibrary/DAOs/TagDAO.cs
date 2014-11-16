@@ -13,7 +13,7 @@ namespace HydrantWiki.Library.DAOs
         public TagDAO(MongoDatabase _mongoDB)
             : base(_mongoDB)
         {
-            
+            HasParent = false;
         }
 
         public override string TableName
@@ -28,7 +28,10 @@ namespace HydrantWiki.Library.DAOs
 
         public List<Tag> GetTagsForUser(Guid _userGuid)
         {
-            return GetList("UserGuid", _userGuid.ToString());
+            IMongoQuery query = GetQuery("UserGuid", _userGuid.ToString());
+            MongoCursor cursor = GetCursor(query)
+                .SetSortOrder(SortBy.Ascending("DeviceDateTime"));
+            return GetList(cursor);
         }
 
         public Tag GetNextPendingTag()
