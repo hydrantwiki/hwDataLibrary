@@ -29,15 +29,6 @@ namespace HydrantWiki.Library.Managers
            
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_geoBox"></param>
-        /// <returns></returns>
-        public List<HydrantPosition> GetHydrantPositions(GeoBox _geoBox)
-        {
-            return null;
-        }
 
 
         #region Users
@@ -433,9 +424,10 @@ namespace HydrantWiki.Library.Managers
 
         #region Search
 
-        public List<HydrantPosition> GetHydrantsInBox(GeoBox _geoBox)
+        public List<Hydrant> GetHydrants(GeoBox _geoBox)
         {
-            return null;
+            HydrantDAO dao = new HydrantDAO(MongoDB);
+            return dao.GetHydrants(_geoBox);
         }
 
 
@@ -449,27 +441,24 @@ namespace HydrantWiki.Library.Managers
             GeoDistance distance = new GeoDistance(DistanceUnits.Feet, 75);
             GeoBox gb = new GeoBox(_tagPosition, distance, distance);
 
-            List<HydrantPosition> positions = GetHydrantsInBox(gb);
+            List<Hydrant> hydrants = GetHydrants(gb);
 
             List<NearbyHydrant> output = new List<NearbyHydrant>();
 
-            foreach (HydrantPosition pos in positions)
-	        {
-                Hydrant h = GetHydrant(pos.HydrantGuid);
-                if (h != null)
+            foreach (Hydrant hydrant in hydrants)
+            {
+                NearbyHydrant nbh = new NearbyHydrant
                 {
-                    NearbyHydrant nbh = new NearbyHydrant
-                    {
-                        Position = pos.Position,
-                        HydrantGuid = pos.HydrantGuid,
-                        DistanceInFeet =
-                            PositionHelper.GetDistance(_tagPosition, pos.Position).ToFeet().ToString("###.#"),
-                        HydrantImageUrl = string.Format("http://{0}", h.GetUrl(true))
-                    };
+                    Position = hydrant.Position,
+                    HydrantGuid = hydrant.Guid,
+                    DistanceInFeet =
+                        PositionHelper.GetDistance(_tagPosition, hydrant.Position).ToFeet().ToString("###.#"),
+                    HydrantImageUrl = string.Format("http://{0}", hydrant.GetUrl(true))
+                };
 
-                    output.Add(nbh);
-                }
-	        }
+                output.Add(nbh);
+
+            }
 
             return output;
         }

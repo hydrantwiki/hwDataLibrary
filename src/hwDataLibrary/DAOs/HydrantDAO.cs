@@ -1,5 +1,8 @@
-﻿using HydrantWiki.Library.Objects;
+﻿using System.Collections.Generic;
+using HydrantWiki.Library.Objects;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+using TreeGecko.Library.Geospatial.Objects;
 using TreeGecko.Library.Mongo.DAOs;
 
 namespace HydrantWiki.Library.DAOs
@@ -20,6 +23,17 @@ namespace HydrantWiki.Library.DAOs
         public override void BuildTable()
         {
             base.BuildTable();
+
+            BuildGeospatialIndex("Position", "POSITION");
+        }
+
+        public List<Hydrant> GetHydrants(GeoBox _geoBox)
+        {
+            IMongoQuery query = Query.WithinRectangle("Position",
+                _geoBox.MinLongitude(), _geoBox.MinLatitude(), 
+                _geoBox.MaxLongitude(), _geoBox.MaxLatitude());
+
+            return GetList(query);
         }
     }
 }

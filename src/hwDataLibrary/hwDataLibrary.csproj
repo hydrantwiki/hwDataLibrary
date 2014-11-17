@@ -100,7 +100,6 @@
     <Compile Include="Objects\Address.cs" />
     <Compile Include="Objects\Hydrant.cs" />
     <Compile Include="Objects\HydrantImage.cs" />
-    <Compile Include="Objects\HydrantPosition.cs" />
     <Compile Include="Objects\NearbyHydrant.cs" />
     <Compile Include="Objects\SystemEmail.cs" />
     <Compile Include="Objects\Tag.cs" />

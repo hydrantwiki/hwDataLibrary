@@ -12,18 +12,22 @@ namespace HydrantWiki.Library.Helpers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="_positions"></param>
+        /// <param name="_hydrants"></param>
         /// <returns></returns>
-        public static string GetHydrantCSV(List<HydrantPosition> _positions)
+        public static string GetHydrantCSV(List<Hydrant> _hydrants)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("lat,lon,title,id,marker-color\n");
             
             int i = 1;
-            foreach (HydrantPosition hp in _positions)
+            foreach (Hydrant hydrant in _hydrants)
             {
-                sb.AppendFormat("{0},{1},{2},{3},#180392\n", hp.Position.Y, hp.Position.X, i, hp.HydrantGuid);
-                i++;
+                if (hydrant.Position != null)
+                {
+                    sb.AppendFormat("{0},{1},{2},{3},#180392\n", 
+                        hydrant.Position.Y, hydrant.Position.X, i, hydrant.Guid);
+                    i++;
+                }
             }
             if (sb.Length > 0)
             {

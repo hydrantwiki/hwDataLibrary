@@ -50,6 +50,7 @@ namespace HydrantWiki.Library.DAOs
 
             BuildNonuniqueIndex("HydrantGuid", "HYDRANTGUID");
             BuildNonuniqueIndex("UserGuid", "USERGUID");
+            BuildGeospatialIndex("TagPosition", "TAGPOSITION");
         }
     }
 }
