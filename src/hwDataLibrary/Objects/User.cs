@@ -38,7 +38,7 @@ namespace HydrantWiki.Library.Objects
             base.LoadFromTGSerializedObject(_tgs);
 
             UserSource = _tgs.GetString("UserSource");
-            UserType = (UserTypes)_tgs.GetEnum("", typeof (UserTypes), UserTypes.User);
+            UserType = (UserTypes)_tgs.GetEnum("UserType", typeof (UserTypes), UserTypes.User);
         }
     }
 }
