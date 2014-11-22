@@ -36,11 +36,20 @@ namespace HydrantWiki.Library.DAOs
 
         public Tag GetNextPendingTag()
         {
-            IMongoQuery query = GetQuery("TagStatus", TagStatus.Pending);
+            IMongoQuery query = GetQuery("Status", TagStatus.Pending);
             MongoCursor cursor = GetCursor(query)
                 .SetSortOrder(SortBy.Ascending("DeviceDateTime"))
                 .SetBatchSize(1);
             return GetFirst(cursor);
+
+        }
+
+        public List<Tag> GetPendingTags()
+        {
+            IMongoQuery query = GetQuery("Status", TagStatus.Pending);
+            MongoCursor cursor = GetCursor(query)
+                .SetSortOrder(SortBy.Ascending("DeviceDateTime"));
+            return GetList(cursor);
 
         }
 

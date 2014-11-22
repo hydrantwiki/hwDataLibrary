@@ -168,6 +168,16 @@ namespace HydrantWiki.Library.Managers
             return dao.GetTagsForUser(_userGuid);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Tag> GetPendingTags()
+        {
+            TagDAO dao = new TagDAO(MongoDB);
+            return dao.GetPendingTags();
+        }
+
         public Tag GetNextPendingTag()
         {
             TagDAO dao = new TagDAO(MongoDB);
