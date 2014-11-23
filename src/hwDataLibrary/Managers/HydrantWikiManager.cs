@@ -445,10 +445,11 @@ namespace HydrantWiki.Library.Managers
         /// 
         /// </summary>
         /// <param name="_tagPosition"></param>
+        /// <param name="_distance">Feet</param>
         /// <returns></returns>
-        public List<NearbyHydrant> GetNearbyHydrants(GeoPoint _tagPosition)
+        public List<NearbyHydrant> GetNearbyHydrants(GeoPoint _tagPosition, double _distance)
         {
-            GeoDistance distance = new GeoDistance(DistanceUnits.Feet, 75);
+            GeoDistance distance = new GeoDistance(DistanceUnits.Feet, _distance);
             GeoBox gb = new GeoBox(_tagPosition, distance, distance);
 
             List<Hydrant> hydrants = GetHydrants(gb);
