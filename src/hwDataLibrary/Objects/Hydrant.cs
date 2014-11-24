@@ -1,4 +1,5 @@
 ﻿using System;
+using HydrantWiki.Library.Helpers;
 using TreeGecko.Library.Geospatial.Extensions;
 using TreeGecko.Library.Common.Interfaces;
 using TreeGecko.Library.Common.Objects;
@@ -61,6 +62,27 @@ namespace HydrantWiki.Library.Objects
 		/// </value>
 		public DateTime CreationDateTime { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ThumbnailUrl
+        {
+            get
+            {
+                return this.GetUrl(true);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                return this.GetUrl(false);
+            }
+        }
         		        
         /// <summary>
         /// 

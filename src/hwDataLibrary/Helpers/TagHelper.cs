@@ -45,7 +45,7 @@ namespace HydrantWiki.Library.Helpers
         {
             if (_hydrant.PrimaryImageGuid != null)
             {
-                return GetAWSPath(_hydrant.PrimaryImageGuid.Value, _showThumb);
+                return "http://" + GetAWSPath(_hydrant.PrimaryImageGuid.Value, _showThumb);
             }
 
             return Config.GetSettingValue("NoImageURL");

@@ -1,5 +1,5 @@
 ﻿using System;
-using HydrantWiki.Library.Constants;
+using HydrantWiki.Library.Helpers;
 using TreeGecko.Library.Common.Interfaces;
 using TreeGecko.Library.Common.Objects;
 using TreeGecko.Library.Geospatial.Attributes;
@@ -126,6 +126,28 @@ namespace HydrantWiki.Library.Objects
             }
 
             Status = _tgs.GetString("Status");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ThumbnailUrl
+        {
+            get
+            {
+                return this.GetUrl(true);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                return this.GetUrl(false);
+            }
         }
     }
 }

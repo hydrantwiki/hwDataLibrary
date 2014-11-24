@@ -460,11 +460,15 @@ namespace HydrantWiki.Library.Managers
             {
                 NearbyHydrant nbh = new NearbyHydrant
                 {
-                    Position = hydrant.Position,
+                    Position =  hydrant.Position,
+                    Location = string.Format("Latitude: {0}<br>Longitude: {1}",
+                        hydrant.Position.Y.ToString("###.######"),
+                        hydrant.Position.X.ToString("###.######")),
                     HydrantGuid = hydrant.Guid,
                     DistanceInFeet =
                         PositionHelper.GetDistance(_tagPosition, hydrant.Position).ToFeet().ToString("###.#"),
-                    HydrantImageUrl = string.Format("http://{0}", hydrant.GetUrl(true))
+                    Thumbnail = string.Format("<img src=\"{0}\" class=\"tagimg\" onclick=\"ShowImage('{1}');\">", hydrant.GetUrl(true), hydrant.GetUrl(false)),
+                    MatchButton = string.Format("<button type=\"button\" class=\"btn btn-info\" onclick=\"MatchHydrant('{0}')\">Match</button>", hydrant.Guid)
                 };
 
                 output.Add(nbh);
