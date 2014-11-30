@@ -10,6 +10,7 @@ namespace HydrantWiki.Library.DAOs
         public UserStatsDAO(MongoDatabase _mongoDB)
             : base(_mongoDB)
         {
+            HasParent = false;
         }
 
         public override string TableName

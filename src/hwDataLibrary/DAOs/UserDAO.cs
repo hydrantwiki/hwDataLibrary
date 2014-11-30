@@ -31,20 +31,29 @@ namespace HydrantWiki.Library.DAOs
 
         public User Get(string _userSource, string _userName)
         {
-            NameValueCollection nvc = new NameValueCollection();
-            nvc.Add("UserSource", _userSource);
-            nvc.Add("Username", _userName);
+            NameValueCollection nvc = new NameValueCollection
+            {
+                {"UserSource", _userSource}, 
+                {"Username", _userName}
+            };
 
             return GetOneItem<User>(nvc);
         }
 
         public User GetByEmail(string _userSource, string _emailAddress)
         {
-            NameValueCollection nvc = new NameValueCollection();
-            nvc.Add("UserSource", _userSource);
-            nvc.Add("EmailAddress", _emailAddress);
+            NameValueCollection nvc = new NameValueCollection
+            {
+                {"UserSource", _userSource},
+                {"EmailAddress", _emailAddress}
+            };
 
             return GetOneItem<User>(nvc);
+        }
+
+        public List<User> GetPrimaryUsers()
+        {
+            return GetList("ParentGuid", null);
         }
 
     }

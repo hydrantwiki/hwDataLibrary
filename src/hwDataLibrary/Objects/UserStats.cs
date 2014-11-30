@@ -7,20 +7,23 @@ namespace HydrantWiki.Library.Objects
     {
         public Guid UserGuid { get; set; }
 
-        public int TagCount { get; set; }
+        public int RejectedTagCount { get; set; }
 
-        public int ActiveTagCount { get; set; }
+        public int ApprovedTagCount { get; set; }
 
-        public int HydrantCount { get; set; }
+        public int PendingTagCount { get; set; }
+
+        public int UserRanking { get; set; }
 
         public override TGSerializedObject GetTGSerializedObject()
         {
             TGSerializedObject tgs = base.GetTGSerializedObject();
 
             tgs.Add("UserGuid", UserGuid);
-            tgs.Add("TagCount", TagCount);
-            tgs.Add("ActiveTagCount", ActiveTagCount);
-            tgs.Add("HydrantCount", HydrantCount);
+            tgs.Add("RejectedTagCount", RejectedTagCount);
+            tgs.Add("ApprovedTagCount", ApprovedTagCount);
+            tgs.Add("PendingTagCount", PendingTagCount);
+            tgs.Add("UserRanking", UserRanking);
 
             return tgs;                
         }
@@ -30,9 +33,10 @@ namespace HydrantWiki.Library.Objects
             base.LoadFromTGSerializedObject(_tgs);
 
             UserGuid = _tgs.GetGuid("UserGuid");
-            TagCount = _tgs.GetInt32("TagCount");
-            ActiveTagCount = _tgs.GetInt32("ActiveTagCount");
-            HydrantCount = _tgs.GetInt32("HydrantCount");
+            RejectedTagCount = _tgs.GetInt32("RejectedTagCount");
+            ApprovedTagCount = _tgs.GetInt32("ApprovedTagCount");
+            PendingTagCount = _tgs.GetInt32("PendingTagCount");
+            UserRanking = _tgs.GetInt32("UserRanking");
         }
 
         public override string ToString()

@@ -1,4 +1,6 @@
-﻿using TreeGecko.Library.Common.Enums;
+﻿using System;
+using Amazon.ElastiCache.Model;
+using TreeGecko.Library.Common.Enums;
 using TreeGecko.Library.Common.Objects;
 using TreeGecko.Library.Net.Objects;
 
@@ -39,6 +41,25 @@ namespace HydrantWiki.Library.Objects
 
             UserSource = _tgs.GetString("UserSource");
             UserType = (UserTypes)_tgs.GetEnum("UserType", typeof (UserTypes), UserTypes.User);
+        }
+
+        public string GetUsernameWithSource()
+        {
+            string source = "";
+            switch (this.UserSource)
+            {
+                case "osm":
+                    source = "OpenStreetMap";
+                    break;
+                case "yo":
+                    source = "Yo";
+                    break;
+                default:
+                    source = "HydrantWiki";
+                    break;
+            }
+
+            return string.Format("{0} - {1}", source, this.Username);
         }
     }
 }

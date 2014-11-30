@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using HydrantWiki.Library.DAOs;
 using HydrantWiki.Library.Enums;
 using HydrantWiki.Library.Helpers;
@@ -58,6 +57,17 @@ namespace HydrantWiki.Library.Managers
         {
             UserDAO dao = new UserDAO(MongoDB);
             return dao.Get(_userSource, _username);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<User> GetUsers()
+        {
+            UserDAO dao = new UserDAO(MongoDB);
+
+            return dao.GetAll();
         }
 
         /// <summary>
@@ -528,47 +538,6 @@ namespace HydrantWiki.Library.Managers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="_userGuid"></param>
-        public void UserStats_AddHydrant(Guid _userGuid)
-        {
-            UserStats userStats = GetUserStats(_userGuid);
-
-            userStats.HydrantCount++;
-
-            Persist(userStats);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_userGuid"></param>
-        public void UserStats_DeactivateTag(Guid _userGuid)
-        {
-            UserStats userStats = GetUserStats(_userGuid);
-
-            userStats.ActiveTagCount--;
-
-            Persist(userStats);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_userSource"></param>
-        /// <param name="_userName"></param>
-        public void UserStats_AddTag(string _userSource, string _userName)
-        {
-            UserStats userStats = GetUserStats(_userSource, _userName);
-
-            userStats.TagCount++;
-            userStats.ActiveTagCount++;
-
-            Persist(userStats);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="_userSource"></param>
         /// <param name="_username"></param>
         /// <returns></returns>
@@ -679,10 +648,8 @@ namespace HydrantWiki.Library.Managers
 
                     return true;
                 }
-                else
-                {
-                    TraceFileHelper.Warning("Canned email not found");
-                }
+                
+                TraceFileHelper.Warning("Canned email not found");
             }
             catch (Exception ex)
             {
@@ -690,7 +657,6 @@ namespace HydrantWiki.Library.Managers
             }
 
             return false;
-
         }
 
         public void Delete(TGUserEmailValidation _emailValidation)
