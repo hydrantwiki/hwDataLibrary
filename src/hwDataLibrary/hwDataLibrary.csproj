@@ -12,6 +12,8 @@
     <AssemblyName>hwDataLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\hwServer\src\Site\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -64,8 +66,9 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\..\bin\MongoDB\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy">
-      <HintPath>..\..\..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    <Reference Include="Nancy, Version=0.23.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\hwServer\src\Site\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\bin\Newtonsoft\Newtonsoft.Json.dll</HintPath>
@@ -87,7 +90,6 @@
     <Compile Include="Constants\UserSources.cs" />
     <Compile Include="DAOs\HydrantDAO.cs" />
     <Compile Include="DAOs\HydrantImageDAO.cs" />
-    <Compile Include="DAOs\SystemEmailDAO.cs" />
     <Compile Include="DAOs\TagDAO.cs" />
     <Compile Include="DAOs\UserDAO.cs" />
     <Compile Include="DAOs\UserStatsDAO.cs" />
@@ -101,7 +103,6 @@
     <Compile Include="Objects\Hydrant.cs" />
     <Compile Include="Objects\HydrantImage.cs" />
     <Compile Include="Objects\NearbyHydrant.cs" />
-    <Compile Include="Objects\SystemEmail.cs" />
     <Compile Include="Objects\Tag.cs" />
     <Compile Include="Objects\TagRow.cs" />
     <Compile Include="Objects\User.cs" />
@@ -134,6 +135,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
