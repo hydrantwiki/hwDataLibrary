@@ -1,6 +1,4 @@
-﻿using System;
-using Amazon.ElastiCache.Model;
-using TreeGecko.Library.Common.Enums;
+﻿using TreeGecko.Library.Common.Enums;
 using TreeGecko.Library.Common.Objects;
 using TreeGecko.Library.Net.Objects;
 
