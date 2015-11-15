@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>HydrantWiki Data Library</id>
+    <id>HydrantWiki.DataLibrary</id>
     <version>$version$</version>
     <title>Data Access and processing library for HydrantWiki System</title>
     <authors>Brian Nelson</authors>
