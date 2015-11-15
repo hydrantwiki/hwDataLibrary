@@ -26,6 +26,27 @@ namespace HydrantWiki.Library.DAOs
             return GetList("HydrantGuid", _hydrantGuid.ToString());
         }
 
+        /// <summary>
+        /// Returns a count of tags for a user
+        /// </summary>
+        /// <param name="_userGuid"></param>
+        /// <returns></returns>
+        public int GetTagCount(Guid _userGuid)
+        {
+            IMongoQuery query = GetQuery("UserGuid", _userGuid.ToString());
+
+            return (int)GetCount(query);
+        }
+
+        /// <summary>
+        /// Returns a count of all tags in system.
+        /// </summary>
+        /// <returns></returns>
+        public int GetTagCount()
+        {
+            return (int)MongoCollection.Count();
+        }
+
         public List<Tag> GetTagsForUser(Guid _userGuid)
         {
             IMongoQuery query = GetQuery("UserGuid", _userGuid.ToString());
