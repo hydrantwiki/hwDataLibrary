@@ -107,9 +107,21 @@ namespace HydrantWiki.Library.Managers
         /// 
         /// </summary>
         /// <returns></returns>
-        public long GetTagCount()
+        public int GetTagCount()
         {
-            return 0;
+            TagDAO dao = new TagDAO(MongoDB);
+            return dao.GetTagCount();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_userGuid"></param>
+        /// <returns></returns>
+        public int GetTagCount(Guid _userGuid)
+        {
+            TagDAO dao = new TagDAO(MongoDB);
+            return dao.GetTagCount(_userGuid);
         }
 
         /// <summary>
@@ -440,6 +452,31 @@ namespace HydrantWiki.Library.Managers
         #endregion
 
         #region Search
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_latitude"></param>
+        /// <param name="_longitude"></param>
+        /// <param name="_distance">In Feet</param>
+        /// <returns></returns>
+        public List<Hydrant> GetHydrants(double _latitude, double _longitude, double _distance)
+        {
+            return GetHydrants(new GeoPoint(_longitude, _latitude), _distance);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_center"></param>
+        /// <param name="_distance">In feet</param>
+        /// <returns></returns>
+        public List<Hydrant> GetHydrants(GeoPoint _center, double _distance)
+        {
+            GeoDistance distance = new GeoDistance(DistanceUnits.Feet, _distance);
+            GeoBox gb = new GeoBox(_center, distance, distance);
+            return GetHydrants(gb);
+        }
 
         public List<Hydrant> GetHydrants(GeoBox _geoBox)
         {
