@@ -57,9 +57,6 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AWSSDK">
-      <HintPath>..\..\bin\AWS\AWSSDK.dll</HintPath>
-    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\..\bin\MongoDB\MongoDB.Bson.dll</HintPath>
     </Reference>
