@@ -11,7 +11,7 @@ assembly_info:
   assembly_informational_version: "{version}"
 
 cache:
-  - packages -> **\packages.config 
+  - src/packages -> **\packages.config 
   
 nuget:
   account_feed: true
