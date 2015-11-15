@@ -1,0 +1,25 @@
+version: 1.0.{build}
+
+before_build:
+  - nuget restore src/hwDataLibrary.sln
+
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "1.0.{build}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+  
+nuget:
+  account_feed: true
+  project_feed: true
+  disable_publish_on_pr: true
+
+platform: x64
+
+configuration: Debug
+  
+build:
+  project: src/hwDataLibrary.sln
+  verbosity: Minimal 
+  publish_nuget: true

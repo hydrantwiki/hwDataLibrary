@@ -1,3 +1,5 @@
 src/hwDataLibrary/bin/
 src/hwDataLibrary/obj/
 *.user
+*.suo
+src/packages/
