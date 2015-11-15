@@ -2,7 +2,7 @@ version: 1.0.{build}
 
 before_build:
   - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.2.0-rc/nuget.exe
-  - nuget-restore src/hwDataLibrary.sln
+  - nuget-restore src\hwDataLibrary.sln
 
 assembly_info:
   patch: true
