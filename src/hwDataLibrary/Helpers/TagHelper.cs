@@ -8,7 +8,7 @@ namespace HydrantWiki.Library.Helpers
     {
         static TagHelper()
         {
-            BaseUrl = Config.GetSettingValue("S3Bucket_Images") + "/" + Config.GetSettingValue("S3MediaRootFolder");
+            BaseUrl = Config.GetSettingValue("S3Protocol", "https") + "://" + Config.GetSettingValue("S3Bucket_Images") + "/" + Config.GetSettingValue("S3MediaRootFolder");
         }
 
         public static string BaseUrl { get; set; }
@@ -21,7 +21,14 @@ namespace HydrantWiki.Library.Helpers
         /// <returns></returns>
         public static string GetUrl(this Tag _tag,  bool _showThumb)
         {
-            return "http://" + GetAWSPath(_tag, _showThumb);
+            string temp = GetAWSPath(_tag, _showThumb);
+
+            if (temp.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return temp;
+            }
+
+            return Config.GetSettingValue("S3Protocol", "https") + "://" + temp;
         }
 
         /// <summary>
@@ -32,7 +39,14 @@ namespace HydrantWiki.Library.Helpers
         /// <returns></returns>
         public static string GetUrl(this TagRow _tag, bool _showThumb)
         {
-            return "http://" + GetAWSPath(_tag, _showThumb);
+            string temp = GetAWSPath(_tag, _showThumb);
+
+            if (temp.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return temp;
+            }
+
+            return Config.GetSettingValue("S3Protocol", "https") + "://" + temp;
         }
 
         /// <summary>
@@ -45,7 +59,14 @@ namespace HydrantWiki.Library.Helpers
         {
             if (_hydrant.PrimaryImageGuid != null)
             {
-                return "http://" + GetAWSPath(_hydrant.PrimaryImageGuid.Value, _showThumb);
+                string temp = GetAWSPath(_hydrant.PrimaryImageGuid.Value, _showThumb);
+
+                if (temp.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return temp;
+                }
+
+                return Config.GetSettingValue("S3Protocol", "https") + "://" + temp;
             }
 
             return Config.GetSettingValue("NoImageURL");
