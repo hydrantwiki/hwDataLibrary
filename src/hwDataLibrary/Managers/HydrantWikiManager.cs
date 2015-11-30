@@ -484,6 +484,11 @@ namespace HydrantWiki.Library.Managers
             return dao.GetHydrants(_geoBox);
         }
 
+        public List<Hydrant> GetHydrants(GeoBox _geoBox, int _quantity)
+        {
+            HydrantDAO dao = new HydrantDAO(MongoDB);
+            return dao.GetHydrants(_geoBox);
+        }
 
         /// <summary>
         /// 
