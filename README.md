@@ -1,4 +1,4 @@
-hwDataLibrary
-=============
 
-C# HydrantWiki Data Library
+Please use the repo found under HydrantWikiServer 
+
+This will be retired.
