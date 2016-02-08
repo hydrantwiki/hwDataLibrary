@@ -4,3 +4,5 @@ src/hwDataLibrary/obj/
 *.suo
 src/packages/
 src/hwDataLibraryTests/App.config
+src/hwDataLibraryTests/bin/
+src/hwDataLibraryTests/obj/
