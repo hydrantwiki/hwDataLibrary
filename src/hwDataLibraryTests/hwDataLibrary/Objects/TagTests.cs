@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HydrantWiki.Library.Constants;
-using HydrantWiki.Library.Managers;
 using HydrantWiki.Library.Objects;
 using NUnit.Framework;
 using TreeGecko.Library.Common.Objects;
-using TreeGecko.Library.Geospatial.Geoframeworks.Objects;
 using TreeGecko.Library.Geospatial.Objects;
 
-namespace hwDataLibraryTests
+namespace hwDataLibraryTests.hwDataLibrary.Objects
 {
     [TestFixture]
     public class TagTests
@@ -51,7 +45,7 @@ namespace hwDataLibraryTests
             Assert.AreEqual(tag.Guid, newTag.Guid);
             Assert.AreEqual(tag.HydrantGuid, newTag.HydrantGuid);
             Assert.AreEqual(tag.ImageGuid, newTag.ImageGuid);
-            Assert.AreEqual(tag.UserGuid, newTag.ImageGuid);
+            Assert.AreEqual(tag.UserGuid, newTag.UserGuid);
             Assert.AreEqual(tag.TagType, newTag.TagType);
             Assert.AreEqual(tag.Status, newTag.Status);
 
@@ -59,27 +53,5 @@ namespace hwDataLibraryTests
             Assert.AreEqual(tag.Position.X, newTag.Position.X);
             Assert.AreEqual(tag.Position.Y, newTag.Position.Y);
         }
-
-        [Test]
-        public void Add()
-        {
-            HydrantWikiManager manager = new HydrantWikiManager();
-
-            GeoPoint pos = new GeoPoint(-100, 45);
-
-            Tag tag = new Tag
-            {
-                Active = true,
-                DeviceDateTime = DateTime.Now,
-                ExternalIdentifier = null,
-                ExternalSource = null,
-                Guid = Guid.NewGuid(),
-                Position = pos,
-                HydrantGuid = null,
-                ImageGuid = Guid.NewGuid()
-            };
-        }
-
-
     }
 }
