@@ -42,7 +42,8 @@ namespace HydrantWiki.Library.DAOs
                 _geoBox.MinLongitude(), _geoBox.MinLatitude(),
                 _geoBox.MaxLongitude(), _geoBox.MaxLatitude());
 
-            MongoCursor cursor = base.MongoCollection.Find(query).SetLimit(_quantity);
+            MongoCursor cursor = GetCursor(query).SetLimit(_quantity);
+
             return GetList(cursor);
         }
     }

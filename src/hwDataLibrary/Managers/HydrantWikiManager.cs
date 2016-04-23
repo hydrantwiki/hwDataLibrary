@@ -181,6 +181,32 @@ namespace HydrantWiki.Library.Managers
         /// 
         /// </summary>
         /// <param name="_userGuid"></param>
+        /// <param name="_page"></param>
+        /// <param name="_pageSize"></param>
+        /// <returns></returns>
+        public List<Tag> GetTagsForUser(Guid _userGuid, int _page, int _pageSize)
+        {
+            TagDAO dao = new TagDAO(MongoDB);
+
+            var tags = dao.GetTagsForUser(_userGuid, _page, _pageSize);
+            return tags;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_userGuid"></param>
+        /// <returns></returns>
+        public int GetTagCountForUser(Guid _userGuid)
+        {
+            TagDAO dao = new TagDAO(MongoDB);
+            return dao.GetTagCount(_userGuid);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_userGuid"></param>
         /// <returns></returns>
         public List<Tag> GetTagsForUser(Guid _userGuid)
         {
@@ -487,8 +513,9 @@ namespace HydrantWiki.Library.Managers
         public List<Hydrant> GetHydrants(GeoBox _geoBox, int _quantity)
         {
             HydrantDAO dao = new HydrantDAO(MongoDB);
-            return dao.GetHydrants(_geoBox);
+            return dao.GetHydrants(_geoBox, _quantity);
         }
+
 
         /// <summary>
         /// 
@@ -639,7 +666,7 @@ namespace HydrantWiki.Library.Managers
 
                     CannedEmailHelper.PopulateEmail(cannedEmail, email, tgso);
 
-                    SESHelper.SendMessage(email);
+                    TreeGecko.Library.Net.Helpers.EmailHelper.SendMessage(email);
                     Persist(email);
 
                     return true;
