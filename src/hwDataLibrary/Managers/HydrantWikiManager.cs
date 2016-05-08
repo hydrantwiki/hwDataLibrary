@@ -557,7 +557,6 @@ namespace HydrantWiki.Library.Managers
         #endregion
 
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -628,17 +627,10 @@ namespace HydrantWiki.Library.Managers
         #endregion
 
 
-
-
-
-
-
         public bool ValidateAuthorizationToken(Guid _userGuid, string _authorizationToken)
         {
             throw new NotImplementedException();
         }
-
-
 
         public void SendUserValidationEmail(TGUser _tgUser, TGUserEmailValidation _tgUserEmailValidation)
         {
