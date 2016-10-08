@@ -1,10 +1,10 @@
 ﻿using System;
 using HydrantWiki.Library.Helpers;
 using TreeGecko.Library.Geospatial.Extensions;
-using TreeGecko.Library.Common.Interfaces;
 using TreeGecko.Library.Common.Objects;
 using TreeGecko.Library.Geospatial.Attributes;
 using TreeGecko.Library.Geospatial.Objects;
+using TreeGecko.Library.Geospatial.Interfaces;
 
 namespace HydrantWiki.Library.Objects
 {

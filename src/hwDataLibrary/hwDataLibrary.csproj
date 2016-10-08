@@ -58,20 +58,30 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AWSSDK, Version=2.3.55.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.2.3.55.0\lib\net35\AWSSDK.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="hwDataLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\hwDataLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="hwMobileApi">
+      <HintPath>..\..\bin\hwMobileApi.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson, Version=1.11.0.92, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
-      <HintPath>..\packages\mongocsharpdriver.1.11.0\lib\net35\MongoDB.Bson.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\packages\mongocsharpdriver.1.11.0\lib\net35\MongoDB.Driver.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MongoDB.Driver, Version=1.11.0.92, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\bin\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -80,25 +90,28 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="tgAWS, Version=1.0.47.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\TreeGeckoLibraries.AWS.1.0.47\lib\net40\tgAWS.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="tgAWS, Version=1.0.72.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\tgAWS.dll</HintPath>
     </Reference>
-    <Reference Include="tgCommonLibrary, Version=1.0.47.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\TreeGeckoLibraries.Common.1.0.47\lib\net40\tgCommonLibrary.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="tgCommonLibrary, Version=1.0.72.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\tgCommonLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="tgGeoframeworks, Version=1.0.47.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\TreeGeckoLibraries.Geospatial.1.0.47\lib\net40\tgGeoframeworks.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="tgGeoframeworks, Version=1.0.72.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\tgGeoframeworks.dll</HintPath>
     </Reference>
-    <Reference Include="tgMongo, Version=1.0.47.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\TreeGeckoLibraries.Mongo.1.0.47\lib\net40\tgMongo.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="tgLoggly">
+      <HintPath>..\..\bin\tgLoggly.dll</HintPath>
     </Reference>
-    <Reference Include="tgNet, Version=1.0.47.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\TreeGeckoLibraries.Net.1.0.47\lib\net40\tgNet.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="tgMongo, Version=1.0.72.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\tgMongo.dll</HintPath>
+    </Reference>
+    <Reference Include="tgNet, Version=1.0.72.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\tgNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -131,7 +144,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="hwDataLibrary.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
